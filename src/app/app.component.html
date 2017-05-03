@@ -1,0 +1,48 @@
+<div >
+  <img [ngStyle]="{'width': (size * 10) + 'px'}" src="http://st.gde-fon.com/wallpapers_original/573760_risunok_sakura_tsvetyi_derevo_vetki_1920x1080_www.Gde-Fon.com.jpg" alt="El autor"> <br> <!-- agregado de la foto-->
+</div>
+
+
+  
+<div> 
+<div [ngStyle]="{'color': color, 'font-size': size + 'px', 'font-weight': 'bold'}">
+  El Autor
+</div>
+  <button (click)="size = size + 1">+</button>
+  <button (click)="size = size - 1">-</button>
+  {{size}}
+
+
+<br><br>
+<div [ngStyle]="{'color': 'blue', 'font-size': '24px', 'font-weight': 'bold'}">
+  <button (click)="mostrarId()">ID</button>
+  <button (click)="mostrarNombre()">NOMBRE</button>
+  <button (click)="mostrarApellido()">APELLIDO</button>  
+  <button (click)="mostrarEmail()">EMAIL</button><br>
+  <button (click)="filtro()">Activar Filtro</button><br>
+  <input type="text" placeholder="BusquedaGeneral" [(ngModel)]="filtroNombre"><br>
+  {{filtroNombre}}
+</div>
+
+<div>
+  <table>  
+    <h2>
+    <td *ngIf="columnId">ID</td>
+    <td *ngIf="columnaNombre">NOMBRE</td>
+    <td *ngIf="columnApellido">APELLIDO</td>
+    <td *ngIf="columnEmail">EMAIL</td>
+    </h2>
+
+    <tr *ngFor = "let item of datosTraidos">
+      <h2 *ngIf="filtroGeneral || (item.id == filtroNombre || item.first_name == filtroNombre || item.last_name == filtroNombre || item.email == filtroNombre)">
+        <td *ngIf="columnId">{{item.id}}</td>
+        <td *ngIf="columnaNombre">{{item.first_name}}</td>
+        <td *ngIf="columnApellido">{{item.last_name}}</td>
+        <td *ngIf="columnEmail">{{item.email}}</td> 
+      </h2>   
+    </tr>
+  </table>
+</div>
+
+
+
